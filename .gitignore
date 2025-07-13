@@ -1,0 +1,44 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+
+# PDFs
+*.pdf
+
+# Editor-specific
+*.swp
+*.swo
+*.bak
+*~
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Output: generated BibTeX files
+/generated-bibs/
+
+# Output folders (optional)
+resume/*.pdf
+short-cv/*.pdf
+long-cv/*.pdf
+
