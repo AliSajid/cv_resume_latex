@@ -1,0 +1,46 @@
+[tools]
+"pipx:pre-commit/pre-commit" = "v4.2.0"
+"ubi:cmhughes/latexindent.pl" = { version = "V3.24.5", exe = "latexindent-macos", rename_exe = "latexindent" }
+python = "3.11"
+
+[env]
+# Automatic virtualenv activation
+_.python.venv = { path = ".venv", create = true }
+
+[tasks.gen-bibs]
+description = "Generate subset .bib files from tagged keywords"
+run = "utils/bibgen.sh"
+
+[tasks.build-resume]
+run = """
+latexmk -pdf -silent -cd -outdir=build resume/resume.tex
+"""
+description = "Generate the small two page standard resume"
+
+[tasks.build-short-cv]
+run = """
+latexmk -pdf -silent -cd -outdir=build short-cv/short-cv.tex
+"""
+description = "Generate the short condensed CV"
+
+[tasks.build-long-cv]
+run = """
+latexmk -pdf -silent -cd -outdir=build long-cv/long-cv.tex
+"""
+description = "Generate the long detailed CV"
+
+[tasks.build-all]
+run = """
+mise run gen-bibs
+mise run build-resume
+mise run build-short-cv
+mise run build-long-cv
+"""
+
+[tasks.clean]
+description = "Remove all LaTeX build artifacts"
+run = "find . -name '*.tex' -exec latexmk -C {} +"
+
+[tasks.format-latex]
+description = "Format .tex files using latexindent"
+run = "find . -name '*.tex' -exec latexindent -w -s {} +"

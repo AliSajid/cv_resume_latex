@@ -1,0 +1,74 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-ast
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-yaml
+        files: \.ya?ml$
+      - id: check-symlinks
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+        args:
+          - --fix=no
+      - id: check-merge-conflict
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: forbid-crlf
+      - id: remove-crlf
+      - id: forbid-tabs
+      - id: remove-tabs
+
+  - repo: https://github.com/sirosen/texthooks
+    rev: 0.6.8
+    hooks:
+      - id: fix-smartquotes
+      - id: fix-ligatures
+      - id: forbid-bidi-controls
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        language_version: python3
+        types: [python]
+        additional_dependencies: ["pybtex"]
+
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.2.0
+    hooks:
+      - id: conventional-pre-commit
+        args:
+          - build
+          - chore
+          - ci
+          - docs
+          - feat
+          - fix
+          - perf
+          - refactor
+          - revert
+          - style
+          - test
+          - bump
+        stages:
+          - commit-msg
+
+  - repo: https://github.com/cmhughes/latexindent.pl
+    rev: V3.24.5
+    hooks:
+      - id: latexindent
+
+  # Optional custom hook for latexmk clean
+  - repo: local
+    hooks:
+      - id: clean-latex
+        name: Clean LaTeX auxiliary files
+        entry: bash -c "latexmk -c"
+        language: system
+        files: \.tex$
+        pass_filenames: false
