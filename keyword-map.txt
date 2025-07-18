@@ -1,0 +1,15 @@
+# Format: original_value -> new_value
+
+# Classification based on type
+Conference-Poster -> pub:poster
+Peer-Reviewed-Article -> pub:article
+Software-Package -> pub:software
+Preprint-Publication -> pub:preprint
+Conference-Presentation -> pub:presentation
+Published-Datasets -> pub:dataset
+Book-Chapter -> pub:chapter
+
+# Classification based on inclusion in things
+Full-CV -> target:fullcv
+Short-CV -> target:shortcv
+Standard-Resume -> target:standardresume
