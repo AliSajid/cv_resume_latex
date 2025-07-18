@@ -42,3 +42,5 @@ resume/*.pdf
 short-cv/*.pdf
 long-cv/*.pdf
 
+# Ignore generated bibliographies
+generated_bibfiles
