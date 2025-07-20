@@ -62,13 +62,15 @@ repos:
     rev: V3.24.5
     hooks:
       - id: latexindent
+        args:
+          - -y="~/.latexindent.yaml"
 
   # Optional custom hook for latexmk clean
   - repo: local
     hooks:
       - id: clean-latex
         name: Clean LaTeX auxiliary files
-        entry: bash -c "latexmk -c"
+        entry: bash -c 'for file in "$@"; do latexmk -silent -c "$file"; done'
         language: system
         files: \.tex$
-        pass_filenames: false
+        pass_filenames: true

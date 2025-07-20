@@ -9,7 +9,7 @@ _.python.venv = { path = ".venv", create = true }
 
 [tasks.gen-bibs]
 description = "Generate subset .bib files from tagged keywords"
-run = "utils/bibgen.sh"
+run = "./utils/bibgen.sh"
 
 [tasks.build-resume]
 run = """

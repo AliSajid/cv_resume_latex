@@ -37,6 +37,9 @@ __pycache__/
 # Output: generated BibTeX files
 /generated-bibs/
 
+# Backup files
+*.bak*
+
 # Output folders (optional)
 resume/*.pdf
 short-cv/*.pdf
