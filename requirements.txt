@@ -1,0 +1,13 @@
+# Python dependencies for the modular CV system
+#
+# Core dependencies:
+pybtex>=0.24.0    # For bibliography processing in generate_bibfiles.py
+
+# Optional dependencies:
+# pyyaml>=6.0      # Alternative to manual YAML parsing (not currently used)
+# bibtexparser     # Alternative to pybtex (not currently used)
+
+# Development dependencies:
+# black            # Code formatting
+# isort            # Import sorting
+# mypy             # Type checking

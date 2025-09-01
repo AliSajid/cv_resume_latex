@@ -4,43 +4,167 @@
 python = "3.11"
 
 [env]
-# Automatic virtualenv activation
-_.python.venv = { path = ".venv", create = true }
+# Use mise-managed Python directly, avoid complex venv setup
+# The modular CV system works with standard library only for most tasks
+
+[tasks.setup-python]
+description = "Install Python dependencies for bibliography processing"
+run = """
+echo "� Installing Python dependencies..."
+pip install pybtex
+echo "✅ Python dependencies installed"
+echo ""
+echo "Testing installation:"
+if python3 -c "import pybtex; print('✅ pybtex successfully installed')"; then
+    echo "🎉 Ready for bibliography processing!"
+else
+    echo "❌ Installation failed"
+    exit 1
+fi
+"""
+
+[tasks.check-deps]
+description = "Check Python dependencies and environment"
+run = """
+echo "🔍 Checking Python environment..."
+echo "Python executable: $(which python3)"
+echo "Python version: $(python3 --version)"
+echo ""
+echo "🔍 Checking modular CV system dependencies..."
+
+# Check core scripts (no external deps)
+echo "✅ build_section.py (stdlib only)"
+echo "✅ status.py (stdlib only)"
+
+# Check bibliography script dependencies
+if python3 -c "import pybtex" 2>/dev/null; then
+    echo "✅ pybtex available for bibliography processing"
+else
+    echo "⚠️  pybtex not available - bibliography processing will fail"
+    echo "   Install with: mise run setup-python"
+fi
+
+echo ""
+echo "🏥 System Status:"
+echo "📊 Testing core modular system..."
+if python3 utils/build_section.py education --tags short_cv --max-items 1 > /dev/null 2>&1; then
+    echo "✅ Modular section building works"
+else
+    echo "❌ Modular section building failed"
+fi
+"""
 
 [tasks.gen-bibs]
-description = "Generate subset .bib files from tagged keywords"
-run = "./utils/bibgen.sh"
+description = "Generate subset .bib files from tagged keywords (requires pybtex)"
+run = """
+if python3 -c "import pybtex" 2>/dev/null; then
+    echo "📚 Generating bibliography files..."
+    python3 utils/generate_bibfiles.py shared/raw_publications.bib generated_bibfiles --prefix pub:
+    echo "✅ Bibliography files generated"
+else
+    echo "⚠️  pybtex not available. Installing..."
+    pip install pybtex
+    echo "📚 Generating bibliography files..."
+    python3 utils/generate_bibfiles.py shared/raw_publications.bib generated_bibfiles --prefix pub:
+    echo "✅ Bibliography files generated"
+fi
+"""
+
+[tasks.build-sections]
+description = "Build all modular CV sections"
+run = "./utils/build_all_sections.sh"
 
 [tasks.build-resume]
 run = """
-latexmk -pdf -silent -cd -outdir=build resume/resume.tex
+cd resume && latexmk -pdf -silent resume.tex
 """
 description = "Generate the small two page standard resume"
 
 [tasks.build-short-cv]
 run = """
-latexmk -pdf -silent -cd -outdir=build short-cv/short-cv.tex
+cd short_cv && latexmk -pdf -silent short_cv.tex
 """
 description = "Generate the short condensed CV"
 
 [tasks.build-long-cv]
 run = """
-latexmk -pdf -silent -cd -outdir=build long-cv/long-cv.tex
+cd long_cv && latexmk -pdf -silent long_cv.tex
 """
 description = "Generate the long detailed CV"
 
-[tasks.build-all]
+[tasks.build-czi]
 run = """
+cd czi
+latexmk -pdf -silent czi.tex
+latexmk -pdf -silent cover_letter.tex
+"""
+description = "Generate the CZI-specific document and cover letter"
+
+[tasks.build-czi-cover-letter]
+run = """
+cd czi && latexmk -pdf -silent cover_letter.tex
+"""
+description = "Generate CZI cover letter only"
+
+[tasks.build-pdfs]
+description = "Build all PDF documents"
+run = "./utils/build.sh pdfs"
+
+[tasks.build-all]
+description = "Build everything: sections, bibs, and PDFs"
+run = """
+mise run check-deps
+mise run build-sections
 mise run gen-bibs
-mise run build-resume
-mise run build-short-cv
-mise run build-long-cv
+mise run build-pdfs
+"""
+
+[tasks.build-with-deps]
+description = "Setup dependencies and build everything"
+run = """
+mise run setup-python
+mise run build-all
 """
 
 [tasks.clean]
 description = "Remove all LaTeX build artifacts"
-run = "find . -name '*.tex' -exec latexmk -C {} +"
+run = "./utils/build.sh clean"
+
+[tasks.status]
+description = "Show modular CV system status"
+run = "python3 utils/status.py"
 
 [tasks.format-latex]
 description = "Format .tex files using latexindent"
 run = "find . -name '*.tex' -exec latexindent -w -s {} +"
+
+[tasks.quick-build]
+description = "Quick build: sections + PDFs (skip bibs)"
+run = """
+mise run build-sections
+mise run build-pdfs
+"""
+
+[tasks.academic-cv]
+description = "Build academic-focused CV sections and documents"
+run = """
+python3 utils/build_section.py education --tags academic --include-header --output sections/education_academic.tex
+python3 utils/build_section.py experience --tags academic research --include-header --output sections/experience_academic.tex
+python3 utils/build_section.py projects --tags academic --include-header --output sections/projects_academic.tex
+mise run build-long-cv
+"""
+
+[tasks.tech-resume]
+description = "Build tech-focused resume sections"
+run = """
+python3 utils/build_section.py experience --tags technology --include-header --output sections/experience_tech.tex
+python3 utils/build_section.py projects --tags r_package rust api --include-header --output sections/projects_tech.tex
+python3 utils/build_section.py skills --tags technical --include-header --output sections/skills_tech.tex
+"""
+
+[tasks.create-cover-letter]
+description = "Create a cover letter template in specified directory"
+run = """
+echo "Usage: mise run create-cover-letter -- --help"
+echo "Example: python3 utils/create_cover_letter.py czi --organization 'Chan Zuckerberg Initiative' --location 'Redwood City, CA'"
+"""

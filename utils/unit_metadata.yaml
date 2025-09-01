@@ -1,0 +1,215 @@
+education:
+  phd_biomedical_sciences:
+    tags: [full_cv, short_cv, academic, research, utra, czi]
+    priority: 1
+    date_range: "2021--Present"
+
+  ms_biomedical_sciences:
+    tags: [full_cv, short_cv, academic, research, utra, czi]
+    priority: 2
+    date_range: "2019--2021"
+
+  certification_courses:
+    tags: [full_cv, academic]
+    priority: 3
+    date_range: "Fall 2018"
+
+  mbbs_nishtar:
+    tags: [full_cv, medical, academic, utra, czi]
+    priority: 4
+    date_range: "2007--2014"
+
+  higher_secondary:
+    tags: [full_cv]
+    priority: 5
+    date_range: "2005--2007"
+
+  secondary_school:
+    tags: [full_cv]
+    priority: 6
+    date_range: "2003--2005"
+
+experience:
+  graduate_research_assistant:
+    tags: [full_cv, short_cv, academic, research, current, utra, czi]
+    priority: 1
+    date_range: "2020--Present"
+
+  deputy_medical_superintendent:
+    tags: [full_cv, medical, leadership, utra, czi]
+    priority: 2
+    date_range: "2017--2018"
+
+  cto_joy_of_urdu:
+    tags: [full_cv, short_cv, technology, leadership]
+    priority: 3
+    date_range: "2016--2021"
+
+  director_it_cdt:
+    tags: [full_cv, technology, leadership, current, czi]
+    priority: 4
+    date_range: "2016--Present"
+
+  house_officer:
+    tags: [full_cv, medical, utra, czi]
+    priority: 5
+    date_range: "2015--2016"
+
+  cto_khabaristan:
+    tags: [full_cv, technology, leadership]
+    priority: 6
+    date_range: "2014--2016"
+
+projects:
+  kinnet:
+    tags:
+      [
+        full_cv,
+        short_cv,
+        academic,
+        r_package,
+        bioinformatics,
+        current,
+        utra,
+        czi,
+      ]
+    priority: 1
+    date_range: "2020--Present"
+
+  drugfindr:
+    tags:
+      [
+        full_cv,
+        short_cv,
+        academic,
+        r_package,
+        bioinformatics,
+        current,
+        utra,
+        czi,
+      ]
+    priority: 2
+    date_range: "2020--Present"
+
+  biopathnet:
+    tags: [full_cv, short_cv, academic, r_package, bioinformatics, current]
+    priority: 3
+    date_range: "2021--Present"
+
+  pod_report:
+    tags: [full_cv, academic, r_package, bioinformatics, current, czi]
+    priority: 4
+    date_range: "2021--Present"
+
+  aaprop:
+    tags: [full_cv, short_cv, rust, api, bioinformatics, current, utra, czi]
+    priority: 5
+    date_range: "2021--Present"
+
+  variant_forge:
+    tags: [full_cv, bioinformatics, current, czi]
+    priority: 6
+    date_range: "2022--Present"
+
+teaching:
+  cdrl_bootcamp:
+    tags: [full_cv, short_cv, academic, teaching, utra]
+    priority: 1
+    date_range: "2021--Present"
+
+  ai_medicine_course:
+    tags: [full_cv, academic, teaching, utra, czi]
+    priority: 2
+    date_range: "Spring 2023"
+
+skills:
+  programming_languages:
+    tags: [full_cv, short_cv, technical, utra, czi]
+    priority: 1
+
+  cloud_devops:
+    tags: [full_cv, short_cv, technical, czi]
+    priority: 2
+
+  data_analysis:
+    tags: [full_cv, short_cv, technical, czi]
+    priority: 3
+
+  web_development:
+    tags: [full_cv, technical]
+    priority: 4
+
+activism:
+  cbgs_president:
+    tags: [full_cv, community, activism, utra, czi]
+    priority: 1
+    date_range: "2022--2023"
+
+  utoledo_gsa:
+    tags: [full_cv, community, activism, utra, czi]
+    priority: 2
+    date_range: "2021--2022"
+
+  abcb:
+    tags: [full_cv, community, activism, utra, czi]
+    priority: 3
+    date_range: "2021--2023"
+
+  cbgs_vicepresident:
+    tags: [full_cv, community, activism, utra]
+    priority: 4
+    date_range: "2021--2022"
+
+  irrtiqa:
+    tags: [full_cv, community, activism, utra]
+    priority: 5
+    date_range: "2011--2013"
+
+  teach:
+    tags: [full_cv, community, activism, utra]
+    priority: 6
+    date_range: "2010--2013"
+
+  council_democracy_tolerance:
+    tags: [full_cv, short_cv, leadership, activism, utra]
+    priority: 7
+    date_range: "2016--Present"
+
+  joy_of_urdu_community:
+    tags: [full_cv, community, activism, utra]
+    priority: 8
+    date_range: "2016--2021"
+
+  aim:
+    tags: [full_cv, community, activism, utra]
+    priority: 9
+    date_range: "2017"
+
+publications:
+  articles:
+    tags: [full_cv, short_cv, academic, research, utra, czi]
+    priority: 1
+
+  chapters:
+    tags: [full_cv, academic, research, utra, czi]
+    priority: 2
+
+  presentations:
+    tags: [full_cv, academic, research]
+    priority: 3
+
+  posters:
+    tags: [full_cv, academic, research]
+    priority: 4
+
+  preprints:
+    tags: [full_cv, academic, research]
+    priority: 5
+
+  datasets:
+    tags: [full_cv, academic, research]
+    priority: 6
+
+  software:
+    tags: [full_cv, academic, research, czi]
+    priority: 7
